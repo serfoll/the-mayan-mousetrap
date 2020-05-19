@@ -44,7 +44,11 @@ The following packages were added:
   com.unity.timeline@1.2.13
   com.unity.ugui@1.0.0
 
+<<<<<<< HEAD
 === Tue May 19 11:10:33 2020
+=======
+=== Tue May 12 14:58:39 2020
+>>>>>>> lizzi
 
 Packages were changed.
 Update Mode: updateDependencies
