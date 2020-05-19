@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:The Mayan Mousetrap/Assets/Meshes/Environment.meta
 guid: b6b1f235d9ae0524c9d86f577463213f
+=======
+guid: b0e09c079745b9b40b36d7119ec2d26a
+>>>>>>> sergio:The Mayan Mousetrap/Assets/Meshes/Environment.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

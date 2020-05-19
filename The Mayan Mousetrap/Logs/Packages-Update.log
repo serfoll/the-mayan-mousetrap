@@ -46,6 +46,7 @@ The following packages were added:
 
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 === Tue May 19 11:10:33 2020
 =======
 === Tue May 12 14:58:39 2020
@@ -53,10 +54,16 @@ The following packages were added:
 =======
 === Thu May 14 15:26:39 2020
 >>>>>>> oliver
+=======
+=== Wed May 13 07:26:39 2020
+>>>>>>> sergio
 
 Packages were changed.
 Update Mode: updateDependencies
 
 The following packages were updated:
+<<<<<<< HEAD
   com.unity.ide.vscode from version 1.1.4 to 1.2.0
+=======
+>>>>>>> sergio
   com.unity.test-framework from version 1.1.11 to 1.1.13
