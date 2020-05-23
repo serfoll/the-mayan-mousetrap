@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody))]
 public class CharacterMovement : MonoBehaviour
 {
     //Variables
@@ -7,19 +8,21 @@ public class CharacterMovement : MonoBehaviour
 
     //Components
     public Transform characterMesh;
-    private Vector3 velocity;
+    Vector3 velocity;
+    Rigidbody rb;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        rb = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
     void Update()
     {
         //Move character
-        transform.Translate(velocity.normalized * moveSpeed * Time.deltaTime);
+        //transform.Translate(velocity.normalized * moveSpeed * Time.deltaTime);
+        rb.velocity = Velocity.normalized;
 
         //Rotate character to face the Movement direction 
         if (velocity.magnitude > 0)
