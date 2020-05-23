@@ -529,7 +529,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: CharacterMesh
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -6057140222963153312, guid: d35876a0299984e428a7374d406f0afa, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: d35876a0299984e428a7374d406f0afa, type: 3}
 --- !u!1 &1317498464
 GameObject:
@@ -728,8 +729,10 @@ GameObject:
   - component: {fileID: 1703973615}
   - component: {fileID: 1703973618}
   - component: {fileID: 1703973619}
+  - component: {fileID: 1703973621}
   - component: {fileID: 1703973620}
   - component: {fileID: 1703973616}
+  - component: {fileID: 1703973617}
   m_Layer: 0
   m_Name: Character
   m_TagString: Untagged
@@ -765,6 +768,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3d7fdad5930a7943bfb089ef453af4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1703973617
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1703973614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1f0b3d1d5cf553448d466403180f332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 1703973621}
 --- !u!54 &1703973618
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -807,6 +823,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraCtrl: {fileID: 718905016}
+--- !u!95 &1703973621
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1703973614}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: d35876a0299984e428a7374d406f0afa, type: 3}
+  m_Controller: {fileID: 9100000, guid: b724fb8a43452294481e80349b8de3fa, type: 2}
+  m_CullingMode: 1
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 1
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &2055860552
 GameObject:
   m_ObjectHideFlags: 0

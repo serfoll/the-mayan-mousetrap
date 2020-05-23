@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class CharacterController : MonoBehaviour
 {
@@ -8,13 +9,11 @@ public class CharacterController : MonoBehaviour
     //Components
     public CameraController cameraCtrl;
 
-    // Start is called before the first frame update
     void Start()
     {
         //cameraCtrl = GetComponent<CameraController>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         transform.Translate(velocity);
@@ -41,5 +40,11 @@ public class CharacterController : MonoBehaviour
             velocity = Vector3.zero;
         }
 
+    }
+
+    public float GetVelocity()
+    {
+        Debug.Log(velocity.magnitude);
+        return velocity.magnitude;
     }
 }
