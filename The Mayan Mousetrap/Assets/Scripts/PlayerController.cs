@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+﻿ using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class PlayerController : MonoBehaviour
@@ -17,10 +17,10 @@ public class PlayerController : MonoBehaviour
     Animator anim;
     public LayerMask groundLayer;
     Vector3 moveDir = Vector3.zero;
+    public ForceMode forceMode;
 
 
     //Triggers
-    bool walking;
     public bool grounded;
 
 
@@ -39,8 +39,8 @@ public class PlayerController : MonoBehaviour
 
 
         //Draw Raycast downwards
-        //Vector3 downRay = transform.TransformDirection(Vector3.down) * lengthToGround;
-        //Debug.DrawRay(transform.position, downRay, Color.blue);
+        Vector3 downRay = transform.TransformDirection(Vector3.down) * lengthToGround;
+        Debug.DrawRay(transform.position, downRay, Color.blue);
 
 
         rot = Input.GetAxis("Horizontal") * rotSpeed * Time.deltaTime;
@@ -49,21 +49,46 @@ public class PlayerController : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.W))
             {
-                anim.SetBool("walking",true);
+                anim.SetBool("running",true);
                 moveDir = new Vector3(0f, 0f, 1f);
                 moveDir *= speed * Time.deltaTime;
                 moveDir = transform.TransformDirection(moveDir);
+
             }
             else
             {
-                anim.SetBool("walking", false);
+                anim.SetBool("running", false);
                 moveDir = new Vector3(0f, 0f, 0f);
             }
-        }
 
-        //moveDir.y -= gravity * Time.deltaTime;
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                anim.SetBool("jump", true);
+                Jump();
+
+            }
+            else
+            {
+                anim.SetBool("jump", false);
+            }
+
+        }// end if grounded
+
         Vector3 rotate = new Vector3(0f, rot, 0f);
         transform.Translate(moveDir);
         transform.Rotate(rotate);
     }
+
+    void FixedUpdate()
+    {
+        //Force player, snappier jump
+        rb.AddForce(Vector3.down * gravity, forceMode);
+
+    }//end FixedUpdate()
+
+    void Jump()
+    {
+        rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+
+    }//end Jump()
 }
