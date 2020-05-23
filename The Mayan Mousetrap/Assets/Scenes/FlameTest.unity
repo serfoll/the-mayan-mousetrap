@@ -728,11 +728,12 @@ GameObject:
   m_Component:
   - component: {fileID: 1703973615}
   - component: {fileID: 1703973618}
-  - component: {fileID: 1703973619}
   - component: {fileID: 1703973621}
   - component: {fileID: 1703973620}
   - component: {fileID: 1703973616}
   - component: {fileID: 1703973617}
+  - component: {fileID: 1703973622}
+  - component: {fileID: 1703973619}
   m_Layer: 0
   m_Name: Character
   m_TagString: Untagged
@@ -797,8 +798,8 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!65 &1703973619
-BoxCollider:
+--- !u!136 &1703973619
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -807,9 +808,10 @@ BoxCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.28396106, y: 0.68409806, z: 0.34205204}
-  m_Center: {x: -0.0010303259, y: 0.33379582, z: 0.01801458}
+  m_Radius: 0.2
+  m_Height: 0.73
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.35, z: 0}
 --- !u!114 &1703973620
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -823,6 +825,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraCtrl: {fileID: 718905016}
+  characterMovement: {fileID: 1703973622}
 --- !u!95 &1703973621
 Animator:
   serializedVersion: 3
@@ -842,6 +845,20 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1703973622
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1703973614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ecab65c7b344d7843a0dc5ae0817620b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 8
+  characterMesh: {fileID: 749604752}
 --- !u!1 &2055860552
 GameObject:
   m_ObjectHideFlags: 0

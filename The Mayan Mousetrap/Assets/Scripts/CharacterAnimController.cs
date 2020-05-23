@@ -9,6 +9,7 @@ public class CharacterAnimController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //Set components
         characterCtrl = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
     }
@@ -16,6 +17,7 @@ public class CharacterAnimController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Create eror in debug log if the animator is missing
         if(animator == null)
         {
             Debug.LogWarning("No valida animator");

@@ -8,29 +8,21 @@ public class CharacterController : MonoBehaviour
     Vector3 velocity;
     //Components
     public CameraController cameraCtrl;
+    public CharacterMovement characterMovement;
 
-    void Start()
-    {
-        //cameraCtrl = GetComponent<CameraController>();
-    }
 
-    void Update()
-    {
-        transform.Translate(velocity);
-    }
-
-    //Update movement inputs
     public void AddMovementInput(float verticalAxis, float horizontalAxis)
     {
         verticalInput = verticalAxis;
         horizontalInput = horizontalAxis;
 
-        //New vector3 based on camera vertical,horizontal rotation and user vertical and horizontal axis input
+        //New vector3 based on camera vertical,horizontal rotation and user vertical,horizontal axis input
         Vector3 translation = verticalAxis * cameraCtrl.transform.forward;
         translation += horizontalAxis * cameraCtrl.transform.right;
         //Stop character from moving up and down
         translation.y = 0;
 
+        //Set velocity to translation if the translation magnitude(vector length) is greater then 0
         if (translation.magnitude > 0)
         {
             velocity = translation;
@@ -40,8 +32,11 @@ public class CharacterController : MonoBehaviour
             velocity = Vector3.zero;
         }
 
-    }
+        characterMovement.Velocity = velocity;
 
+    }// end AddMovementinput
+
+    //Get length of the velocitry vector
     public float GetVelocity()
     {
         Debug.Log(velocity.magnitude);
