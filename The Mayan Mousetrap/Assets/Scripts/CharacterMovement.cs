@@ -22,7 +22,7 @@ public class CharacterMovement : MonoBehaviour
     {
         //Move character
         //transform.Translate(velocity.normalized * moveSpeed * Time.deltaTime);
-        rb.velocity = Velocity.normalized;
+        rb.AddForce(new Vector3(velocity.normalized.x * moveSpeed, velocity.normalized.y, velocity.normalized.z * moveSpeed), ForceMode.VelocityChange);
 
         //Rotate character to face the Movement direction 
         if (velocity.magnitude > 0)
