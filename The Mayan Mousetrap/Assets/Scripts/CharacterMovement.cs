@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UIElements;
 
 [RequireComponent(typeof(Rigidbody))]
 public class CharacterMovement : MonoBehaviour
@@ -7,7 +8,7 @@ public class CharacterMovement : MonoBehaviour
     public enum MovingState { Walking, Jogging, Spriting, Crouching }
     //Variables
     public float moveSpeed = 8f;
-
+    float smoothSpeed;
     //Components
     public Transform characterMesh;
     Vector3 velocity;
@@ -28,14 +29,20 @@ public class CharacterMovement : MonoBehaviour
         //Rotate character to face the Movement direction 
         if (velocity.magnitude > 0)
         {
+            smoothSpeed = Mathf.Lerp(smoothSpeed, moveSpeed, Time.deltaTime);
             characterMesh.rotation = Quaternion.LookRotation(velocity);
+        }
+        else
+        {
+            smoothSpeed = Mathf.Lerp(smoothSpeed, 0f, Time.deltaTime);
         }
 
     }
 
     private void FixedUpdate()
     {
-        rb.velocity = new Vector3(velocity.normalized.x * moveSpeed, rb.velocity.y, velocity.normalized.z * moveSpeed);
+        if (velocity.magnitude > 0)
+            rb.velocity = new Vector3(velocity.normalized.x * smoothSpeed, rb.velocity.y, velocity.normalized.z * smoothSpeed);
     }
 
     //Get and set velocity
