@@ -4,6 +4,7 @@
 public class PlayerInput : MonoBehaviour
 {
     private CharacterController characterCtrl;
+    public bool sprinting = false;
 
     // Start is called before the first frame update
     void Start()
@@ -22,10 +23,16 @@ public class PlayerInput : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
-            characterCtrl.ToggleRun();
+            sprinting = true;
+            characterCtrl.ToggleSprint(sprinting);
 
         }
 
+        if (Input.GetKeyUp(KeyCode.LeftShift))
+        {
+            sprinting = false;
+            characterCtrl.ToggleSprint(sprinting);
+        }
         if (Input.GetKeyDown(KeyCode.C))
         {
             characterCtrl.ToggleCrouch();

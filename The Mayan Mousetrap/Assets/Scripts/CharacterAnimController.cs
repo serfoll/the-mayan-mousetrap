@@ -50,7 +50,7 @@ public class CharacterAnimController : MonoBehaviour
                 }
             case MovingState.Spriting:
                 {
-                    animator.SetInteger("MovingState", 2);
+                    animator.SetInteger("MovingState", 0);
                     break;
                 }
             case MovingState.Crouching:

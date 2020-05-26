@@ -774,6 +774,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3d7fdad5930a7943bfb089ef453af4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sprinting: 0
 --- !u!114 &1703973617
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -863,7 +864,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ecab65c7b344d7843a0dc5ae0817620b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 8
+  moveSpeed: 10
   characterMesh: {fileID: 749604752}
 --- !u!1 &2055860552
 GameObject:

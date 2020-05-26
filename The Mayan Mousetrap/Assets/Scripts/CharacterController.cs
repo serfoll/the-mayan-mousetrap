@@ -43,19 +43,19 @@ public class CharacterController : MonoBehaviour
         return characterMovement.Velocity.magnitude;
     }
 
-    public void ToggleRun()
-    {
-        if (characterMovement.GetMovingState() != CharacterMovement.MovingState.Jogging)
-        {
-            characterMovement.SetMovingState(CharacterMovement.MovingState.Jogging);
-            characterAnimCtrl.SetMovingState(CharacterAnimController.MovingState.Jogging);
-        }
-        else
-        {
-            characterMovement.SetMovingState(CharacterMovement.MovingState.Walking);
-            characterAnimCtrl.SetMovingState(CharacterAnimController.MovingState.Walking);
-        }
-    }
+    //public void ToggleRun()
+    //{
+    //    if (characterMovement.GetMovingState() != CharacterMovement.MovingState.Jogging)
+    //    {
+    //        characterMovement.SetMovingState(CharacterMovement.MovingState.Jogging);
+    //        characterAnimCtrl.SetMovingState(CharacterAnimController.MovingState.Jogging);
+    //    }
+    //    else
+    //    {
+    //        characterMovement.SetMovingState(CharacterMovement.MovingState.Walking);
+    //        characterAnimCtrl.SetMovingState(CharacterAnimController.MovingState.Walking);
+    //    }
+    //}
     
     public void ToggleCrouch()
     {
@@ -68,6 +68,20 @@ public class CharacterController : MonoBehaviour
         {
             characterMovement.SetMovingState(CharacterMovement.MovingState.Walking);
             characterAnimCtrl.SetMovingState(CharacterAnimController.MovingState.Walking);
+        }
+    }
+    
+    public void ToggleSprint(bool sprinting)
+    {
+        if (sprinting)
+        {
+            characterMovement.SetMovingState(CharacterMovement.MovingState.Spriting);
+            characterAnimCtrl.SetMovingState(CharacterAnimController.MovingState.Spriting);
+        }
+        else
+        {
+            characterMovement.SetMovingState(CharacterMovement.MovingState.Jogging);
+            characterAnimCtrl.SetMovingState(CharacterAnimController.MovingState.Jogging);
         }
     }
 }
