@@ -6,9 +6,13 @@ public class CharacterMovement : MonoBehaviour
 {
     //Define moving states
     public enum MovingState { Walking, Jogging, Spriting, Crouching }
+
+
     //Variables
     public float moveSpeed = 8f;
     float smoothSpeed;
+    float rotationSpeed = 10f;
+
     //Components
     public Transform characterMesh;
     Vector3 velocity;
@@ -30,7 +34,9 @@ public class CharacterMovement : MonoBehaviour
         if (velocity.magnitude > 0)
         {
             smoothSpeed = Mathf.Lerp(smoothSpeed, moveSpeed, Time.deltaTime);
-            characterMesh.rotation = Quaternion.LookRotation(velocity);
+            //characterMesh.rotation = Quaternion.LookRotation(velocity);
+            characterMesh.rotation = Quaternion.Lerp(characterMesh.rotation,
+                Quaternion.LookRotation(velocity), rotationSpeed * Time.deltaTime);
         }
         else
         {
@@ -55,7 +61,7 @@ public class CharacterMovement : MonoBehaviour
         {
             case MovingState.Walking:
                 {
-                    moveSpeed = 5;
+                    moveSpeed = 7;
                     break;
                 }
             case MovingState.Jogging:
@@ -70,7 +76,7 @@ public class CharacterMovement : MonoBehaviour
                 }
             case MovingState.Crouching:
                 {
-                    moveSpeed = 3;
+                    moveSpeed = 5;
                     break;
                 }
         }

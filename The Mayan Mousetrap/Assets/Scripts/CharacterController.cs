@@ -8,6 +8,7 @@ public class CharacterController : MonoBehaviour
     //Components
     public CameraController cameraCtrl;
     public CharacterMovement characterMovement;
+    public CharacterAnimController characterAnimCtrl;
 
 
     public void AddMovementInput(float verticalAxis, float horizontalAxis)
@@ -31,7 +32,7 @@ public class CharacterController : MonoBehaviour
             velocity = Vector3.zero;
         }
 
-        characterMovement.Velocity = velocity;
+        characterMovement.Velocity = translation;
 
     }// end AddMovementinput
 
@@ -44,9 +45,29 @@ public class CharacterController : MonoBehaviour
 
     public void ToggleRun()
     {
-        if (characterMovement.GetMovingState() != CharacterMovement.MovingState.Spriting)
-            characterMovement.SetMovingState(CharacterMovement.MovingState.Spriting);
-        else
+        if (characterMovement.GetMovingState() != CharacterMovement.MovingState.Jogging)
+        {
             characterMovement.SetMovingState(CharacterMovement.MovingState.Jogging);
+            characterAnimCtrl.SetMovingState(CharacterAnimController.MovingState.Jogging);
+        }
+        else
+        {
+            characterMovement.SetMovingState(CharacterMovement.MovingState.Walking);
+            characterAnimCtrl.SetMovingState(CharacterAnimController.MovingState.Walking);
+        }
+    }
+    
+    public void ToggleCrouch()
+    {
+        if (characterMovement.GetMovingState() != CharacterMovement.MovingState.Crouching)
+        {
+            characterMovement.SetMovingState(CharacterMovement.MovingState.Crouching);
+            characterAnimCtrl.SetMovingState(CharacterAnimController.MovingState.Crouching);
+        }
+        else
+        {
+            characterMovement.SetMovingState(CharacterMovement.MovingState.Walking);
+            characterAnimCtrl.SetMovingState(CharacterAnimController.MovingState.Walking);
+        }
     }
 }

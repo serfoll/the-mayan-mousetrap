@@ -23,6 +23,12 @@ public class PlayerInput : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
             characterCtrl.ToggleRun();
+
+        }
+
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            characterCtrl.ToggleCrouch();
         }
     }
 }

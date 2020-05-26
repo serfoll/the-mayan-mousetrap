@@ -454,6 +454,11 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: b724fb8a43452294481e80349b8de3fa, type: 2}
+    - target: {fileID: -5995113453477278968, guid: d35876a0299984e428a7374d406f0afa,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 26c1498081f71f94fb89f369f28ba17e, type: 2}
     - target: {fileID: -4216859302048453862, guid: d35876a0299984e428a7374d406f0afa,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -826,6 +831,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cameraCtrl: {fileID: 718905016}
   characterMovement: {fileID: 1703973622}
+  characterAnimCtrl: {fileID: 1703973617}
 --- !u!95 &1703973621
 Animator:
   serializedVersion: 3
@@ -839,7 +845,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: b724fb8a43452294481e80349b8de3fa, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
-  m_ApplyRootMotion: 1
+  m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
@@ -857,7 +863,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ecab65c7b344d7843a0dc5ae0817620b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 4
+  moveSpeed: 8
   characterMesh: {fileID: 749604752}
 --- !u!1 &2055860552
 GameObject:
