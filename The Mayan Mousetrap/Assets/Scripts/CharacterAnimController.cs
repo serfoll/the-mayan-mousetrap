@@ -25,5 +25,6 @@ public class CharacterAnimController : MonoBehaviour
         }
 
         animator.SetFloat("Velocity",characterCtrl.GetVelocity());
+        Debug.Log(characterCtrl.GetVelocity());
     }
 }

@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class CharacterController : MonoBehaviour
 {
@@ -39,7 +38,15 @@ public class CharacterController : MonoBehaviour
     //Get length of the velocitry vector
     public float GetVelocity()
     {
-        Debug.Log(velocity.magnitude);
-        return velocity.magnitude;
+        //Debug.Log(characterMovement.Velocity.magnitude);
+        return characterMovement.Velocity.magnitude;
+    }
+
+    public void ToggleRun()
+    {
+        if (characterMovement.GetMovingState() != CharacterMovement.MovingState.Spriting)
+            characterMovement.SetMovingState(CharacterMovement.MovingState.Spriting);
+        else
+            characterMovement.SetMovingState(CharacterMovement.MovingState.Jogging);
     }
 }

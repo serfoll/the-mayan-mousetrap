@@ -14,10 +14,15 @@ public class PlayerInput : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float horizontalAxis = Input.GetAxis("Horizontal");
-        float verticalAxis = Input.GetAxis("Vertical");
+        float horizontalAxis = Input.GetAxis("Horizontal") * Time.deltaTime;
+        float verticalAxis = Input.GetAxis("Vertical") * Time.deltaTime;
 
-        // Add/define axisto character controll component 
+        // Add/define axis to character controll component 
         characterCtrl.AddMovementInput(verticalAxis, horizontalAxis);
+
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            characterCtrl.ToggleRun();
+        }
     }
 }
