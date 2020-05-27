@@ -7,6 +7,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4221630169229465312, guid: 3f18830f2ea52dd439dfc162233cacec,
+        type: 3}
+      propertyPath: lookUpMax
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 4221630169229465312, guid: 3f18830f2ea52dd439dfc162233cacec,
+        type: 3}
+      propertyPath: lookUpMin
+      value: -20
+      objectReference: {fileID: 0}
     - target: {fileID: 4221630170516658856, guid: 3f18830f2ea52dd439dfc162233cacec,
         type: 3}
       propertyPath: moveSpeed
@@ -21,6 +31,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Character_1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4221630170516658870, guid: 3f18830f2ea52dd439dfc162233cacec,
+        type: 3}
+      propertyPath: m_TagString
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 4221630170516658871, guid: 3f18830f2ea52dd439dfc162233cacec,
         type: 3}
