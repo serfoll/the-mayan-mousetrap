@@ -10,45 +10,87 @@ public class CharacterMovement : MonoBehaviour
 
     //Variables
     public float moveSpeed = 8f;
-    float smoothSpeed;
-    float rotationSpeed = 10f;
+    public float jumpForce = 10f;
+    private float smoothSpeed;
+    private float rotationSpeed = 10f;
+    public float lengthToGround = 2.5f;
+    public bool isGrounded;
+    private bool inAir;
 
     //Components
     public Transform characterMesh;
-    Vector3 velocity;
-    Rigidbody rb;
-    MovingState movingState;
+    private Vector3 velocity;
+    private Rigidbody rb;
+    private MovingState movingState;
+    public LayerMask groundLayer;
+
+    //Delagate()
+    public delegate void OnLandedDelagate();
+    //Delegate event
+    public event OnLandedDelagate onLanded;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        inAir = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        //Move character
+        
+        isGrounded = Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), lengthToGround, groundLayer);
+        
+        //Draw Raycast downwards
+        Vector3 downRay = transform.TransformDirection(Vector3.down) * lengthToGround;
+        Debug.DrawRay(transform.position, downRay, Color.green);
 
         //Rotate character to face the Movement direction 
         if (velocity.magnitude > 0)
         {
-            smoothSpeed = Mathf.Lerp(smoothSpeed, moveSpeed, Time.deltaTime);
+            smoothSpeed = Mathf.Lerp(smoothSpeed, moveSpeed, 50f);
             //characterMesh.rotation = Quaternion.LookRotation(velocity);
             characterMesh.rotation = Quaternion.Lerp(characterMesh.rotation,
                 Quaternion.LookRotation(velocity), rotationSpeed * Time.deltaTime);
         }
         else
         {
-            smoothSpeed = Mathf.Lerp(smoothSpeed, 0f, Time.deltaTime);
+            smoothSpeed = Mathf.Lerp(smoothSpeed, 0f, 50f);
         }
 
+        if (inAir)
+        {
+            if (isGrounded)
+            {
+                inAir = false;
+                onLanded();
+            }
+        }
     }
 
     private void FixedUpdate()
     {
         if (velocity.magnitude > 0)
-            rb.velocity = new Vector3(velocity.normalized.x * smoothSpeed, rb.velocity.y, velocity.normalized.z * smoothSpeed);
+            rb.velocity = new Vector3(velocity.normalized.x * moveSpeed, rb.velocity.y, velocity.normalized.z * moveSpeed);
+        else
+            rb.velocity = new Vector3(velocity.normalized.x * moveSpeed, rb.velocity.y, velocity.normalized.z * moveSpeed);
+
+        
+    }
+
+    public void Jump()
+    {
+        if (isGrounded)
+        {
+            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            inAir = true;
+        }
+    }
+
+    public void OnLand()
+    {
+
     }
 
     //Get and set velocity
@@ -81,10 +123,10 @@ public class CharacterMovement : MonoBehaviour
                 }
         }
         //Debug.Log(state);
-    }//end SetMovingState
+    }//end SetMovingState()
 
     public MovingState GetMovingState()
     {
         return movingState;
-    }
+    } //end GetMovingState()
 }

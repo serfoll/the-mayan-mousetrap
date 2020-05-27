@@ -3,8 +3,10 @@
 public class CharacterController : MonoBehaviour
 {
 
-    float horizontalInput, verticalInput;
-    Vector3 velocity;
+    //variables
+    private float horizontalInput, verticalInput;
+    private Vector3 velocity;
+
     //Components
     public CameraController cameraCtrl;
     public CharacterMovement characterMovement;
@@ -43,6 +45,16 @@ public class CharacterController : MonoBehaviour
         return characterMovement.Velocity.magnitude;
     }
 
+    public void Jump()
+    {
+        if (characterMovement.isGrounded)
+        {
+            characterMovement.Jump();
+            characterAnimCtrl.Jump();
+            characterMovement.onLanded += characterAnimCtrl.Land;
+        }
+    }
+
     //public void ToggleRun()
     //{
     //    if (characterMovement.GetMovingState() != CharacterMovement.MovingState.Jogging)
@@ -55,8 +67,8 @@ public class CharacterController : MonoBehaviour
     //        characterMovement.SetMovingState(CharacterMovement.MovingState.Walking);
     //        characterAnimCtrl.SetMovingState(CharacterAnimController.MovingState.Walking);
     //    }
-    //}
-    
+    //} //end ToggleRun
+
     public void ToggleCrouch()
     {
         if (characterMovement.GetMovingState() != CharacterMovement.MovingState.Crouching)
@@ -69,8 +81,8 @@ public class CharacterController : MonoBehaviour
             characterMovement.SetMovingState(CharacterMovement.MovingState.Walking);
             characterAnimCtrl.SetMovingState(CharacterAnimController.MovingState.Walking);
         }
-    }
-    
+    }//end ToggleCrouch
+
     public void ToggleSprint(bool sprinting)
     {
         if (sprinting)
@@ -83,5 +95,5 @@ public class CharacterController : MonoBehaviour
             characterMovement.SetMovingState(CharacterMovement.MovingState.Jogging);
             characterAnimCtrl.SetMovingState(CharacterAnimController.MovingState.Jogging);
         }
-    }
+    }//end ToggleSprint
 }

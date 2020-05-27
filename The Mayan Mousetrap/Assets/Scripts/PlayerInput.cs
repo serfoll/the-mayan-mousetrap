@@ -37,5 +37,10 @@ public class PlayerInput : MonoBehaviour
         {
             characterCtrl.ToggleCrouch();
         }
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            characterCtrl.Jump();
+        }
     }
 }

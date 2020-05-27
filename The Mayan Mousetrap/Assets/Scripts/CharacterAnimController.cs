@@ -7,8 +7,8 @@ public class CharacterAnimController : MonoBehaviour
 
     //Components
     public Animator animator;
-    CharacterController characterCtrl;
-    MovingState movingState;
+    private CharacterController characterCtrl;
+    private MovingState movingState;
 
     // Start is called before the first frame update
     void Start()
@@ -32,6 +32,14 @@ public class CharacterAnimController : MonoBehaviour
         //Debug.Log(characterCtrl.GetVelocity());
     }// end update
 
+    public void Jump()
+    {
+        animator.SetTrigger("Jump");
+    }
+    public void Land()
+    {
+        animator.SetTrigger("Land");
+    }
 
     public void SetMovingState(MovingState state)
     {
