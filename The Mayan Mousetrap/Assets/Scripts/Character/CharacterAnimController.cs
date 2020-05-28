@@ -67,6 +67,6 @@ public class CharacterAnimController : MonoBehaviour
                     break;
                 }
         }
-        Debug.Log(state);
+        //Debug.Log(state);
     }//end SetMovingState
 }

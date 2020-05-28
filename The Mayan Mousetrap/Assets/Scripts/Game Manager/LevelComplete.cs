@@ -21,7 +21,7 @@ public class LevelComplete : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             finished = true;
-            Debug.Log(finished);
+            //Debug.Log(finished);
         }
     }
 }

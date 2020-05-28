@@ -4,6 +4,7 @@
 public class PlayerInput : MonoBehaviour
 {
     private CharacterController characterCtrl;
+    public  CharacterConditionController characterConditionCtrl;
     public bool sprinting = false;
 
     // Start is called before the first frame update
@@ -21,18 +22,24 @@ public class PlayerInput : MonoBehaviour
         // Add/define axis to character controll component 
         characterCtrl.AddMovementInput(verticalAxis, horizontalAxis);
 
+
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
-            sprinting = true;
-            characterCtrl.ToggleSprint(sprinting);
-
+            if (characterCtrl.moving)
+            {
+                sprinting = true;
+                characterCtrl.ToggleSprint(sprinting);
+                characterConditionCtrl.StaminaDrain();
+            }
         }
 
         if (Input.GetKeyUp(KeyCode.LeftShift))
         {
             sprinting = false;
             characterCtrl.ToggleSprint(sprinting);
+            characterConditionCtrl.StaminaRegen();
         }
+
         if (Input.GetKeyDown(KeyCode.C))
         {
             characterCtrl.ToggleCrouch();
