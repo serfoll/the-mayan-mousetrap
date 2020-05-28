@@ -24,7 +24,7 @@ public class TimerControl : MonoBehaviour
 
         string minutes = ((int) t / 60).ToString("00");
 
-        string  seconds = (t % 60).ToString("f2");
+        string  seconds = (t % 60).ToString("f1");
 
         timerText.text = minutes + ":" + seconds;
     }

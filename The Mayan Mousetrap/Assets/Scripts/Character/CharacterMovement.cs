@@ -1,12 +1,10 @@
 ﻿using UnityEngine;
-using UnityEngine.UIElements;
 
 [RequireComponent(typeof(Rigidbody))]
 public class CharacterMovement : MonoBehaviour
 {
     //Define moving states
     public enum MovingState { Walking, Jogging, Spriting, Crouching }
-
 
     //Variables
     public float moveSpeed = 8f;
@@ -49,14 +47,14 @@ public class CharacterMovement : MonoBehaviour
         //Rotate character to face the Movement direction 
         if (velocity.magnitude > 0)
         {
-            smoothSpeed = Mathf.Lerp(smoothSpeed, moveSpeed, 50f);
+            smoothSpeed = Mathf.Lerp(smoothSpeed, moveSpeed, Time.deltaTime);
             //characterMesh.rotation = Quaternion.LookRotation(velocity);
             characterMesh.rotation = Quaternion.Lerp(characterMesh.rotation,
                 Quaternion.LookRotation(velocity), rotationSpeed * Time.deltaTime);
         }
         else
         {
-            smoothSpeed = Mathf.Lerp(smoothSpeed, 0f, 50f);
+            smoothSpeed = Mathf.Lerp(smoothSpeed, 0f, Time.deltaTime);
         }
 
         if (inAir)
@@ -72,11 +70,9 @@ public class CharacterMovement : MonoBehaviour
     private void FixedUpdate()
     {
         if (velocity.magnitude > 0)
-            rb.velocity = new Vector3(velocity.normalized.x * moveSpeed, rb.velocity.y, velocity.normalized.z * moveSpeed);
+            rb.velocity = new Vector3(velocity.normalized.x * smoothSpeed, rb.velocity.y, velocity.normalized.z * smoothSpeed);
         else
-            rb.velocity = new Vector3(velocity.normalized.x * moveSpeed, rb.velocity.y, velocity.normalized.z * moveSpeed);
-
-        
+            rb.velocity = new Vector3(velocity.normalized.x * smoothSpeed, rb.velocity.y, velocity.normalized.z * smoothSpeed);
     }
 
     public void Jump()
@@ -86,11 +82,6 @@ public class CharacterMovement : MonoBehaviour
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             inAir = true;
         }
-    }
-
-    public void OnLand()
-    {
-
     }
 
     //Get and set velocity
@@ -108,12 +99,12 @@ public class CharacterMovement : MonoBehaviour
                 }
             case MovingState.Jogging:
                 {
-                    moveSpeed = 10;
+                    moveSpeed = 9;
                     break;
                 }
             case MovingState.Spriting:
                 {
-                    moveSpeed = 15;
+                    moveSpeed = 14;
                     break;
                 }
             case MovingState.Crouching:

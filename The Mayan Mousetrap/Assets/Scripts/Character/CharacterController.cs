@@ -6,12 +6,22 @@ public class CharacterController : MonoBehaviour
     //variables
     private float horizontalInput, verticalInput;
     private Vector3 velocity;
+    public bool moving;
 
     //Components
     public CameraController cameraCtrl;
     public CharacterMovement characterMovement;
     public CharacterAnimController characterAnimCtrl;
+    public CharacterConditionController characterConditionCtrl;
 
+
+    private void LateUpdate()
+    {
+        if (characterConditionCtrl.currentStamina == 0)
+        {
+            characterMovement.moveSpeed = 10;
+        }
+    }// end LateUpdate()
 
     public void AddMovementInput(float verticalAxis, float horizontalAxis)
     {
@@ -28,14 +38,15 @@ public class CharacterController : MonoBehaviour
         if (translation.magnitude > 0)
         {
             velocity = translation;
+            moving = true;
         }
         else
         {
+            moving = false;
             velocity = Vector3.zero;
         }
 
         characterMovement.Velocity = translation;
-
     }// end AddMovementinput
 
     //Get length of the velocitry vector
@@ -54,20 +65,6 @@ public class CharacterController : MonoBehaviour
             characterMovement.onLanded += characterAnimCtrl.Land;
         }
     }
-
-    //public void ToggleRun()
-    //{
-    //    if (characterMovement.GetMovingState() != CharacterMovement.MovingState.Jogging)
-    //    {
-    //        characterMovement.SetMovingState(CharacterMovement.MovingState.Jogging);
-    //        characterAnimCtrl.SetMovingState(CharacterAnimController.MovingState.Jogging);
-    //    }
-    //    else
-    //    {
-    //        characterMovement.SetMovingState(CharacterMovement.MovingState.Walking);
-    //        characterAnimCtrl.SetMovingState(CharacterAnimController.MovingState.Walking);
-    //    }
-    //} //end ToggleRun
 
     public void ToggleCrouch()
     {
@@ -96,4 +93,5 @@ public class CharacterController : MonoBehaviour
             characterAnimCtrl.SetMovingState(CharacterAnimController.MovingState.Jogging);
         }
     }//end ToggleSprint
+
 }
