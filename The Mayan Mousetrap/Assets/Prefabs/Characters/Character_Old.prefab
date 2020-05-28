@@ -128,8 +128,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   camSmoothFactor: 1
-  lookUpMax: 50
-  lookUpMin: -50
+  lookUpMax: 20
+  lookUpMin: -20
 --- !u!1 &4221630170516658870
 GameObject:
   m_ObjectHideFlags: 0
@@ -141,13 +141,14 @@ GameObject:
   - component: {fileID: 4221630170516658871}
   - component: {fileID: 4221630170516658859}
   - component: {fileID: 4221630170516658858}
+  - component: {fileID: 2021921351213919002}
   - component: {fileID: 4221630170516658860}
   - component: {fileID: 4221630170516658856}
   - component: {fileID: 4221630170516658857}
   - component: {fileID: 4221630170516658862}
-  - component: {fileID: 2021921351213919002}
+  - component: {fileID: 5849748171147685202}
   m_Layer: 0
-  m_Name: Character_1
+  m_Name: Character_Old
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -199,6 +200,25 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!95 &2021921351213919002
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4221630170516658870}
+  m_Enabled: 1
+  m_Avatar: {fileID: 9000000, guid: 27426bfaa8e1bf343b24a1582dc52b26, type: 3}
+  m_Controller: {fileID: 9100000, guid: c0f2b54bdeb8c744983a15ff27f13f02, type: 2}
+  m_CullingMode: 1
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &4221630170516658860
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -211,9 +231,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba9a4808507078d40a5185977d3ec2c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moving: 0
   cameraCtrl: {fileID: 4221630169229465312}
   characterMovement: {fileID: 4221630170516658856}
   characterAnimCtrl: {fileID: 4221630170516658857}
+  characterConditionCtrl: {fileID: 0}
 --- !u!114 &4221630170516658856
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -227,8 +249,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 8
-  jumpForce: 10
-  lengthToGround: 2.5
+  jumpForce: 8
+  lengthToGround: 0.02
   isGrounded: 0
   characterMesh: {fileID: 9107982995853824065}
   groundLayer:
@@ -259,26 +281,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b8197283d6bde84ca9a92342b046ecd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterConditionCtrl: {fileID: 0}
   sprinting: 0
---- !u!95 &2021921351213919002
-Animator:
-  serializedVersion: 3
+--- !u!114 &5849748171147685202
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4221630170516658870}
   m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 27426bfaa8e1bf343b24a1582dc52b26, type: 3}
-  m_Controller: {fileID: 9100000, guid: c0f2b54bdeb8c744983a15ff27f13f02, type: 2}
-  m_CullingMode: 1
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 201b84ef4a447764e8618a3bc79818e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterCondition: {fileID: 0}
+  maxHealth: 100
+  maxStamina: 100
+  currentStamina: 0
+  currentHealth: 0
 --- !u!1001 &4259484448677165915
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -296,6 +317,11 @@ PrefabInstance:
       propertyPath: m_ApplyRootMotion
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -5995113453477278968, guid: 27426bfaa8e1bf343b24a1582dc52b26,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: c99e3c0c81a7c954a82217fd67fcb87f, type: 2}
     - target: {fileID: -4216859302048453862, guid: 27426bfaa8e1bf343b24a1582dc52b26,
         type: 3}
       propertyPath: m_LocalPosition.x
