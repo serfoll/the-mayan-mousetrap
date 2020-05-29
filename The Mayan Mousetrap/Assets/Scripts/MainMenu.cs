@@ -3,11 +3,11 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    private string gameScene = "GamePlay";
+    private string MaterialTest = "MaterialTest";
 
    public void PlayGame()
     {
-        SceneManager.LoadScene(gameScene);
+        SceneManager.LoadScene(MaterialTest);
     }
 
     public void QuitGame()
