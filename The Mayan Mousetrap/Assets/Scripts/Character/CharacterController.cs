@@ -13,7 +13,7 @@ public class CharacterController : MonoBehaviour
     public CharacterMovement characterMovement;
     public CharacterAnimController characterAnimCtrl;
     public CharacterConditionController characterConditionCtrl;
-
+    public AudioManager audioManager;
 
     private void LateUpdate()
     {
@@ -21,6 +21,7 @@ public class CharacterController : MonoBehaviour
         {
             characterMovement.moveSpeed = 10;
         }
+
     }// end LateUpdate()
 
     public void AddMovementInput(float verticalAxis, float horizontalAxis)

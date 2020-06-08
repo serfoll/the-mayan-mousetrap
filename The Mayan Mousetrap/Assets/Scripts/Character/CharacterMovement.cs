@@ -3,6 +3,7 @@
 [RequireComponent(typeof(Rigidbody))]
 public class CharacterMovement : MonoBehaviour
 {
+
     //Define moving states
     public enum MovingState { Walking, Jogging, Spriting, Crouching }
 
@@ -70,7 +71,10 @@ public class CharacterMovement : MonoBehaviour
     private void FixedUpdate()
     {
         if (velocity.magnitude > 0)
+        {
             rb.velocity = new Vector3(velocity.normalized.x * smoothSpeed, rb.velocity.y, velocity.normalized.z * smoothSpeed);
+        }
+
         else
             rb.velocity = new Vector3(velocity.normalized.x * smoothSpeed, rb.velocity.y, velocity.normalized.z * smoothSpeed);
     }

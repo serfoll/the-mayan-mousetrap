@@ -4,6 +4,7 @@ using UnityEngine;
 public class CharacterConditionController : MonoBehaviour
 {
     public CharacterCondition characterCondition;
+    public AudioManager audioManager;
 
     public int maxHealth = 100;
     public int maxStamina = 100;
@@ -26,12 +27,12 @@ public class CharacterConditionController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
+    }
 
-        if (Input.GetKeyDown(KeyCode.F))
-        {
-            TakeDamage(20);
-            characterCondition.SetHealth(currentHealth);
-        }
+    private void LateUpdate()
+    {
+        
     }
 
     void TakeDamage(int d)

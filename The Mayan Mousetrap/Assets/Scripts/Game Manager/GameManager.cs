@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
@@ -6,6 +7,8 @@ public class GameManager : MonoBehaviour
     public enum GameStatus { Over, Complete }
 
     private GameStatus gameStatus;
+
+    public AudioManager audioManager;
 
     public LevelComplete levelComplete;
     public TimerControl timerCtrl;
@@ -20,7 +23,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-
+        audioManager.Play("Bg_Music");
     }
 
     // Update is called once per frame
@@ -28,8 +31,7 @@ public class GameManager : MonoBehaviour
     {
         if (levelComplete.finished)
         {
-            timerCtrl.timerStop = true;
-            SetGameStatus(GameStatus.Complete);
+            StartCoroutine(LevelFinished());
         }
 
         if (characterConditionCtrl.currentHealth <= 0)
@@ -49,6 +51,10 @@ public class GameManager : MonoBehaviour
         characterConditionCtrl.currentHealth -= d;
         characterCondition.healthSlider.value = characterConditionCtrl.currentHealth;
         Debug.Log(characterConditionCtrl.currentHealth);
+        if(characterConditionCtrl.currentHealth <= 0)
+        {
+            audioManager.PlayOneShot("Die");
+        }
     }
 
     public void SetGameStatus( GameStatus status)
@@ -81,5 +87,12 @@ public class GameManager : MonoBehaviour
     public void QuitGame()
     {
         Application.Quit();
+    }
+
+    IEnumerator LevelFinished()
+    {
+        yield return new WaitForSeconds(1f);
+        timerCtrl.timerStop = true;
+        SetGameStatus(GameStatus.Complete);
     }
 }
